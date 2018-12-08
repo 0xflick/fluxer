@@ -57,9 +57,7 @@ impl Iteration {
 
         for _ in 0..self.max_iterations {
             x = (self.coefs.a * x).sin() + (self.coefs.b * y).sin() - (self.coefs.c * z).cos();
-
             y = (self.coefs.d * x).sin() + (self.coefs.e * y).sin() - (self.coefs.f * z).cos();
-
             z = z + 0.1;
 
             let put_x = x * x_scale + x_shift;
