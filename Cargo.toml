@@ -6,3 +6,4 @@ authors = ["alexflk <alexsflick@gmail.com>"]
 [dependencies]
 image = "*"
 rand = "0.6"
+getopts = "0.2"
