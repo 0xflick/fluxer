@@ -21,11 +21,21 @@ fn main() {
     opts.optopt(
         "",
         "height",
-        "height of the output image in pixels",
+        "height of the output image in pixels. Defaults to 1080",
         "HEIGHT",
     );
-    opts.optopt("", "width", "width of the output image in pixels", "WIDTH");
-    opts.optopt("", "density", "density of points in final image", "DENSITY");
+    opts.optopt(
+        "",
+        "width",
+        "width of the output image in pixels. Defaults to 1920",
+        "WIDTH",
+    );
+    opts.optopt(
+        "",
+        "density",
+        "density of points in final image. Defaults to 0.1",
+        "DENSITY",
+    );
     opts.optflag("h", "help", "print this help menu");
 
     let matches = match opts.parse(&args[1..]) {
