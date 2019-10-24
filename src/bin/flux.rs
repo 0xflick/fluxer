@@ -36,6 +36,11 @@ fn main() {
         "density of points in final image. Defaults to 0.1",
         "DENSITY",
     );
+    opts.optflag(
+        "i",
+        "invert",
+        "inverts colors of the final image. Defaults to false",
+    );
     opts.optflag("h", "help", "print this help menu");
 
     let matches = match opts.parse(&args[1..]) {
@@ -58,10 +63,14 @@ fn main() {
     let height = matches.opt_get_default("height", 1080).unwrap();
     let width = matches.opt_get_default("width", 1920).unwrap();
     let density = matches.opt_get_default("density", 0.1).unwrap();
+    let invert = matches.opt_present("i");
 
     let max_iterations = ((height * width) as f32 * density).round() as u32;
 
     let iter = Iteration::new(height, width, max_iterations);
-    let imgbuf = iter.generate();
+    let mut imgbuf = iter.generate();
+    if invert {
+        image::imageops::colorops::invert(&mut imgbuf);
+    }
     imgbuf.save(output).unwrap();
 }
