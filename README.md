@@ -16,6 +16,3 @@ Options:
     -i, --invert        inverts colors of the final image. Defaults to false
     -h, --help          print this help menu
 ```
-
-## Todo ##
-* Add inverted color option.
