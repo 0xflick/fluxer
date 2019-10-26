@@ -1,8 +1,3 @@
-extern crate flux;
-extern crate getopts;
-extern crate image;
-extern crate rand;
-
 use std::env;
 
 use flux::Iteration;
