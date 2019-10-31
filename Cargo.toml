@@ -3,7 +3,7 @@ name = "fluxer"
 version = "1.1.1"
 authors = ["alexflk <alexsflick@gmail.com>"]
 license = "MIT"
-repository = "https://github.com/alexflk/flux"
+repository = "https://github.com/alexflk/fluxer"
 description = "Generate beautiful images."
 edition = "2018"
 
