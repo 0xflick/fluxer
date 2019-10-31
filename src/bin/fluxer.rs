@@ -1,6 +1,6 @@
 use std::env;
 
-use flux::Iteration;
+use fluxer::Iteration;
 use getopts::Options;
 
 fn print_usage(program: &str, opts: Options) {

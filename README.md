@@ -1,4 +1,4 @@
-# Flux #
+# Fluxer #
 Generate images like those at http://koaning.io/fluctuating-repetition.html
 
 ## Installation ##
@@ -6,7 +6,7 @@ Download and run `cargo build`.
 
 ## Usage ##
 ```
-Usage: flux OUTPUT [options]
+Usage: fluxer OUTPUT [options]
 
 Options:
         --height HEIGHT height of the output image in pixels. Defaults to 1080
