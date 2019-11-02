@@ -3,6 +3,8 @@ use std::env;
 use fluxer::Iteration;
 use getopts::Options;
 
+const RESCALE: u32 = 2;
+
 fn print_usage(program: &str, opts: Options) {
     let brief = format!("Usage: {} OUTPUT [options]", program);
     print!("{}", opts.usage(&brief));
@@ -36,6 +38,11 @@ fn main() {
         "invert",
         "inverts colors of the final image. Defaults to false",
     );
+    opts.optflag(
+        "s",
+        "smooth",
+        "smooth final image by super-sampling. Defaults to false",
+    );
     opts.optflag("h", "help", "print this help menu");
 
     let matches = match opts.parse(&args[1..]) {
@@ -59,13 +66,20 @@ fn main() {
     let width = matches.opt_get_default("width", 1920).unwrap();
     let density = matches.opt_get_default("density", 0.1).unwrap();
     let invert = matches.opt_present("i");
+    let smooth = matches.opt_present("s");
 
-    let max_iterations = ((height * width) as f32 * density).round() as u32;
+    let max_iterations = ((height * RESCALE * width * RESCALE) as f32 * density).round() as u32;
 
-    let iter = Iteration::new(height, width, max_iterations);
+    let iter = Iteration::new(height * RESCALE, width * RESCALE, max_iterations);
     let mut imgbuf = iter.generate();
+
     if invert {
         image::imageops::colorops::invert(&mut imgbuf);
     }
+
+    if smooth {
+        imgbuf = image::imageops::resize(&imgbuf, width, height, image::FilterType::Triangle);
+    }
+
     imgbuf.save(output).unwrap();
 }
