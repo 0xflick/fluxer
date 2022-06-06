@@ -9,5 +9,5 @@ edition = "2018"
 
 [dependencies]
 getopts = "0.2.21"
-image = "0.22.3"
+image = "0.23.12"
 rand = "0.7.2"
